@@ -3,11 +3,15 @@
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title><?php the_title(); ?></title>
+	<title><?php wp_title( ' | ', true, 'right' ) . bloginfo( 'name' ); ?></title>
 	<?php wp_head(); ?>
 </head>
 <body>
+	<?php // Since 5.2.0 the wp_body_open hook shoud be called here.
+	 if ( function_exists( 'wp_body_open' ) ) {
+		wp_body_open();
+	} ?>
 	<header class="site-header">
-		Site Header
+		<?php get_template_part( 'template-parts/header/site', 'branding' ); ?>
 	</header>
 	<main class="site-main">
